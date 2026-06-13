@@ -15,12 +15,12 @@ try:
 except FileNotFoundError:
     st.error("Error: 'emotion_model.pkl' or 'vectorizer.pkl' not found. Please upload them to your GitHub repository.")
 
-# Text cleaning function (same as used during training)
+# Text cleaning function
 def clean_text(text):
     text = text.lower() # Convert to lowercase
     text = re.sub(r'http\S+|www\S+|https\S+', '', text, flags=re.MULTILINE) # Remove URLs
     text = re.sub(r'@[A-Za-z0-9_]+', '', text) # Remove mentions (@user)
-    text = re.sub(r'[^\w\s]', '', text) # Remove special characters and punctuation
+    text = re.sub(r'[^\w\s]', '', text) # Remove special characters
     text = " ".join([word for word in text.split() if word not in stop_words]) # Remove stopwords
     return text
 
